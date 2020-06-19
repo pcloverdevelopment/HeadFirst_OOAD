@@ -1,0 +1,13 @@
+C:\Users\pclov\source\repos\HF_OOAD\GuitarApp\bin\Debug\netcoreapp3.1\GuitarApp.exe
+C:\Users\pclov\source\repos\HF_OOAD\GuitarApp\bin\Debug\netcoreapp3.1\GuitarApp.deps.json
+C:\Users\pclov\source\repos\HF_OOAD\GuitarApp\bin\Debug\netcoreapp3.1\GuitarApp.runtimeconfig.json
+C:\Users\pclov\source\repos\HF_OOAD\GuitarApp\bin\Debug\netcoreapp3.1\GuitarApp.runtimeconfig.dev.json
+C:\Users\pclov\source\repos\HF_OOAD\GuitarApp\bin\Debug\netcoreapp3.1\GuitarApp.dll
+C:\Users\pclov\source\repos\HF_OOAD\GuitarApp\bin\Debug\netcoreapp3.1\GuitarApp.pdb
+C:\Users\pclov\source\repos\HF_OOAD\GuitarApp\obj\Debug\netcoreapp3.1\GuitarApp.csprojAssemblyReference.cache
+C:\Users\pclov\source\repos\HF_OOAD\GuitarApp\obj\Debug\netcoreapp3.1\GuitarApp.csproj.CoreCompileInputs.cache
+C:\Users\pclov\source\repos\HF_OOAD\GuitarApp\obj\Debug\netcoreapp3.1\GuitarApp.AssemblyInfoInputs.cache
+C:\Users\pclov\source\repos\HF_OOAD\GuitarApp\obj\Debug\netcoreapp3.1\GuitarApp.AssemblyInfo.cs
+C:\Users\pclov\source\repos\HF_OOAD\GuitarApp\obj\Debug\netcoreapp3.1\GuitarApp.dll
+C:\Users\pclov\source\repos\HF_OOAD\GuitarApp\obj\Debug\netcoreapp3.1\GuitarApp.pdb
+C:\Users\pclov\source\repos\HF_OOAD\GuitarApp\obj\Debug\netcoreapp3.1\GuitarApp.genruntimeconfig.cache
