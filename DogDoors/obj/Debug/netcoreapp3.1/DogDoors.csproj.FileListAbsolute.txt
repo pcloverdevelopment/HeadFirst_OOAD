@@ -1,0 +1,13 @@
+C:\Users\pclov\source\repos\HF_OOAD\DogDoors\obj\Debug\netcoreapp3.1\DogDoors.csprojAssemblyReference.cache
+C:\Users\pclov\source\repos\HF_OOAD\DogDoors\obj\Debug\netcoreapp3.1\DogDoors.csproj.CoreCompileInputs.cache
+C:\Users\pclov\source\repos\HF_OOAD\DogDoors\obj\Debug\netcoreapp3.1\DogDoors.AssemblyInfoInputs.cache
+C:\Users\pclov\source\repos\HF_OOAD\DogDoors\obj\Debug\netcoreapp3.1\DogDoors.AssemblyInfo.cs
+C:\Users\pclov\source\repos\HF_OOAD\DogDoors\bin\Debug\netcoreapp3.1\DogDoors.exe
+C:\Users\pclov\source\repos\HF_OOAD\DogDoors\bin\Debug\netcoreapp3.1\DogDoors.deps.json
+C:\Users\pclov\source\repos\HF_OOAD\DogDoors\bin\Debug\netcoreapp3.1\DogDoors.runtimeconfig.json
+C:\Users\pclov\source\repos\HF_OOAD\DogDoors\bin\Debug\netcoreapp3.1\DogDoors.runtimeconfig.dev.json
+C:\Users\pclov\source\repos\HF_OOAD\DogDoors\bin\Debug\netcoreapp3.1\DogDoors.dll
+C:\Users\pclov\source\repos\HF_OOAD\DogDoors\bin\Debug\netcoreapp3.1\DogDoors.pdb
+C:\Users\pclov\source\repos\HF_OOAD\DogDoors\obj\Debug\netcoreapp3.1\DogDoors.dll
+C:\Users\pclov\source\repos\HF_OOAD\DogDoors\obj\Debug\netcoreapp3.1\DogDoors.pdb
+C:\Users\pclov\source\repos\HF_OOAD\DogDoors\obj\Debug\netcoreapp3.1\DogDoors.genruntimeconfig.cache
