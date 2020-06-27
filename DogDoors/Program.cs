@@ -7,6 +7,10 @@ namespace DogDoors
     static void Main(string[] args)
     {
       DogDoor door = new DogDoor();
+      door.AddAllowedBark(new Bark("rowlf"));
+      door.AddAllowedBark(new Bark("rooowlf"));
+      door.AddAllowedBark(new Bark("rawlf"));
+      door.AddAllowedBark(new Bark("woof"));
       BarkRecognizer recognizer = new BarkRecognizer(door);
       Remote remote = new Remote(door);
 
@@ -17,20 +21,28 @@ namespace DogDoors
       Console.WriteLine("------------------------");
 
       // Simulate the hardware hearing a bark
-      Console.WriteLine("Fido starts barking.\n");
-      recognizer.Recognize("Woof");
+      Console.WriteLine("Bruce starts barking.\n");
+      recognizer.Recognize(new Bark("rowlf"));
 
-      Console.WriteLine("Fido has gone outside...\n");
+      Console.WriteLine("Bruce has gone outside...\n");
 
       System.Threading.Thread.Sleep(10000);
 
-      Console.WriteLine("Fido's all done...\n");
+      Console.WriteLine("Bruce's all done...\n");
+      Console.WriteLine("...but he's stuck outside!\n");
+
+      // Simulate the hardware hear a bark (not Bruce!)
+      Bark smallDogBark = new Bark("yip");
+      Console.WriteLine("A small dog starts barking.\n");
+      recognizer.Recognize(smallDogBark);
+
+      System.Threading.Thread.Sleep(5000);
 
       // Simulate the hardware hearing a bark again
-      Console.WriteLine("Fido starts barking.\n");
-      recognizer.Recognize("Woof");
+      Console.WriteLine("Bruce starts barking.");
+      recognizer.Recognize(new Bark("rooowlf"));
 
-      Console.WriteLine("Fido's back inside...");
+      Console.WriteLine("Bruce's back inside...");
 
       // Formatting
       Console.WriteLine("------------------------");
