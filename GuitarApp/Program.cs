@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 
 namespace GuitarApp
 {
@@ -11,32 +12,33 @@ namespace GuitarApp
       Inventory inventory = new Inventory();
       InitializeInventory(inventory);
 
-      GuitarSpec whatErinLikes = new GuitarSpec(
-          BuilderStringProvider.ToString(Builder.FENDER),
-          "Stratocastor",
-          TypeStringProvider.ToString(Type.ELECTRIC),
-          WoodStringProvider.ToString(Wood.ALDER),
-          WoodStringProvider.ToString(Wood.ALDER),
-          6);
+      IDictionary properties = new Hashtable();
+      properties.Add("builder", Builder.GIBSON);
+      properties.Add("backWood", Wood.MAPLE);
+      InstrumentSpec clientSpec = new InstrumentSpec(properties);
 
-      List<Guitar> guitars = inventory.Search(whatErinLikes);
+      List<Instrument> matchingInstruments = inventory.Search(clientSpec);
 
-      if (guitars != null && guitars.Count > 0)
+      if (matchingInstruments != null && matchingInstruments.Count > 0)
       {
         Console.WriteLine("---------------------------------\n");
-        Console.WriteLine("Erin, you might like these guitars:\n");
+        Console.WriteLine("Erin, you might like these instruments:\n");
 
-        foreach (var guitar in guitars)
+        foreach (var instrument in matchingInstruments)
         {
-          GuitarSpec guitarSpec = guitar.GuitarSpec;
-          string builder = guitarSpec.Builder;
-          string model = guitarSpec.Model;
-          string type = guitarSpec.Type;
-          string backWood = guitarSpec.BackWood;
-          string topWood = guitarSpec.TopWood;
-          double price = guitar.Price;
+          InstrumentSpec spec = instrument.InstrumentSpec;
 
-          Console.WriteLine($"We have a {builder} {model} {type} guitar:\n {backWood} back and sides,\n {topWood} top.\nYou can have it for only $ {price}!");
+          Console.WriteLine($"We have a {spec.GetProperty("instrumentType")} with the following properties:");
+
+          foreach (DictionaryEntry property in spec.GetAllProperties())
+          {
+            string propertyName = (string)property.Key;
+            if (propertyName.Equals("instrumentType")) continue;
+            Console.WriteLine($"   {propertyName}: {spec.GetProperty(propertyName)}");
+          }
+
+          Console.WriteLine($"  You can have this {spec.GetProperty("instrumentType")} for ${instrument.Price}\n----");
+
           Console.WriteLine("---------------------------------\n");
         }
       }
@@ -50,39 +52,85 @@ namespace GuitarApp
 
     private static void InitializeInventory(Inventory inventory)
     {
-      inventory.AddGuitar("11277", 3999.95, new GuitarSpec(BuilderStringProvider.ToString(Builder.COLLINGS),
-                  "CJ", TypeStringProvider.ToString(Type.ACOUSTIC),
-                  WoodStringProvider.ToString(Wood.INDIAN_ROSEWOOD), WoodStringProvider.ToString(Wood.SITKA), 6));
-      inventory.AddGuitar("V95693", 1499.95, new GuitarSpec(BuilderStringProvider.ToString(Builder.FENDER),
-                          "Stratocastor", TypeStringProvider.ToString(Type.ELECTRIC),
-                          WoodStringProvider.ToString(Wood.ALDER), WoodStringProvider.ToString(Wood.ALDER), 6));
-      inventory.AddGuitar("V9512", 1549.95, new GuitarSpec(BuilderStringProvider.ToString(Builder.FENDER),
-                          "Stratocastor", TypeStringProvider.ToString(Type.ELECTRIC),
-                          WoodStringProvider.ToString(Wood.ALDER), WoodStringProvider.ToString(Wood.ALDER), 6));
-      inventory.AddGuitar("122784", 5495.95, new GuitarSpec(BuilderStringProvider.ToString(Builder.MARTIN),
-                          "D-18", TypeStringProvider.ToString(Type.ACOUSTIC),
-                          WoodStringProvider.ToString(Wood.MAHOGANY), WoodStringProvider.ToString(Wood.ADIRONDACK), 6));
-      inventory.AddGuitar("76531", 6295.95, new GuitarSpec(BuilderStringProvider.ToString(Builder.MARTIN),
-                          "OM-28", TypeStringProvider.ToString(Type.ACOUSTIC),
-                          WoodStringProvider.ToString(Wood.BRAZILIAN_ROSEWOOD), WoodStringProvider.ToString(Wood.ADIRONDACK), 6));
-      inventory.AddGuitar("70108276", 2295.95, new GuitarSpec(BuilderStringProvider.ToString(Builder.GIBSON),
-                          "Les Paul", TypeStringProvider.ToString(Type.ELECTRIC),
-                          WoodStringProvider.ToString(Wood.MAHOGANY), WoodStringProvider.ToString(Wood.MAHOGANY), 6));
-      inventory.AddGuitar("82765501", 1890.95, new GuitarSpec(BuilderStringProvider.ToString(Builder.GIBSON),
-                          "SG '61 Reissue", TypeStringProvider.ToString(Type.ELECTRIC),
-                          WoodStringProvider.ToString(Wood.MAHOGANY), WoodStringProvider.ToString(Wood.MAHOGANY), 6));
-      inventory.AddGuitar("77023", 6275.95, new GuitarSpec(BuilderStringProvider.ToString(Builder.MARTIN),
-                          "D-28", TypeStringProvider.ToString(Type.ACOUSTIC),
-                          WoodStringProvider.ToString(Wood.BRAZILIAN_ROSEWOOD), WoodStringProvider.ToString(Wood.ADIRONDACK), 6));
-      inventory.AddGuitar("1092", 12995.95, new GuitarSpec(BuilderStringProvider.ToString(Builder.OLSON),
-                          "SJ", TypeStringProvider.ToString(Type.ACOUSTIC),
-                          WoodStringProvider.ToString(Wood.INDIAN_ROSEWOOD), WoodStringProvider.ToString(Wood.CEDAR), 6));
-      inventory.AddGuitar("566-62", 8999.95, new GuitarSpec(BuilderStringProvider.ToString(Builder.RYAN),
-                          "Cathedral", TypeStringProvider.ToString(Type.ACOUSTIC),
-                          WoodStringProvider.ToString(Wood.COCOBOLO), WoodStringProvider.ToString(Wood.CEDAR), 6));
-      inventory.AddGuitar("6 29584", 2100.95, new GuitarSpec(BuilderStringProvider.ToString(Builder.PRS),
-                          "Dave Navarro Signature", TypeStringProvider.ToString(Type.ELECTRIC),
-                          WoodStringProvider.ToString(Wood.MAHOGANY), WoodStringProvider.ToString(Wood.MAPLE), 6));
+      List<InstrumentSpec> specs = new List<InstrumentSpec>();
+
+      Hashtable h1 = new Hashtable();
+      h1.Add("instrumentType", InstrumentType.GUITAR);
+      h1.Add("builder", Builder.COLLINGS);
+      h1.Add("model", "CJ");
+      h1.Add("type", Type.ACOUSTIC);
+      h1.Add("numStrings", 6);
+      h1.Add("topWood", Wood.INDIAN_ROSEWOOD);
+      h1.Add("backWood", Wood.SITKA);
+      inventory.AddInstrument("11277", 3999.95, new InstrumentSpec(h1));
+
+      Hashtable h2 = new Hashtable();
+      h2.Add("instrumentType", InstrumentType.GUITAR);
+      h2.Add("builder", Builder.MARTIN);
+      h2.Add("model", "D-18");
+      h2.Add("type", Type.ACOUSTIC);
+      h2.Add("numStrings", 6);
+      h2.Add("topWood", Wood.ADIRONDACK);
+      h2.Add("backWood", Wood.MAHOGANY);
+      inventory.AddInstrument("122784", 5495.95, new InstrumentSpec(h2));
+
+      Hashtable h3 = new Hashtable();
+      h3.Add("instrumentType", InstrumentType.GUITAR);
+      h3.Add("builder", Builder.FENDER);
+      h3.Add("model", "Stratocastor");
+      h3.Add("type", Type.ELECTRIC);
+      h3.Add("numStrings", 6);
+      h3.Add("topWood", Wood.ALDER);
+      h3.Add("backWood", Wood.ALDER);
+      inventory.AddInstrument("V95693", 1499.95, new InstrumentSpec(h3));
+
+      Hashtable h4 = new Hashtable();
+      h4.Add("instrumentType", InstrumentType.GUITAR);
+      h4.Add("builder", Builder.FENDER);
+      h4.Add("model", "Stratocastor");
+      h4.Add("type", Type.ELECTRIC);
+      h4.Add("numStrings", 6);
+      h4.Add("topWood", Wood.ALDER);
+      h4.Add("backWood", Wood.ALDER);
+      inventory.AddInstrument("V91512", 1549.95, new InstrumentSpec(h4));
+
+      Hashtable h5 = new Hashtable();
+      h5.Add("instrumentType", InstrumentType.GUITAR);
+      h5.Add("builder", Builder.GIBSON);
+      h5.Add("model", "SG'61 Reissue");
+      h5.Add("type", Type.ELECTRIC);
+      h5.Add("numStrings", 6);
+      h5.Add("topWood", Wood.MAHOGANY);
+      h5.Add("backWood", Wood.MAHOGANY);
+      inventory.AddInstrument("82765501", 1890.95, new InstrumentSpec(h5));
+
+      Hashtable h6 = new Hashtable();
+      h6.Add("instrumentType", InstrumentType.GUITAR);
+      h6.Add("builder", Builder.GIBSON);
+      h6.Add("model", "Les Paul");
+      h6.Add("type", Type.ELECTRIC);
+      h6.Add("numStrings", 6);
+      h6.Add("topWood", Wood.MAPLE);
+      h6.Add("backWood", Wood.MAPLE);
+      inventory.AddInstrument("70108276", 2295.95, new InstrumentSpec(h6));
+
+      Hashtable h7 = new Hashtable();
+      h7.Add("instrumentType", InstrumentType.MANDOLIN);
+      h7.Add("builder", Builder.GIBSON);
+      h7.Add("model", "F5-G");
+      h7.Add("type", Type.ACOUSTIC);
+      h7.Add("topWood", Wood.MAPLE);
+      h7.Add("backWood", Wood.MAPLE);
+      inventory.AddInstrument("9019920", 5495.99, new InstrumentSpec(h7));
+
+      Hashtable h8 = new Hashtable();
+      h8.Add("instrumentType", InstrumentType.BANJO);
+      h8.Add("builder", Builder.GIBSON);
+      h8.Add("model", "RB-3");
+      h8.Add("type", Type.ACOUSTIC);
+      h8.Add("topWood", Wood.MAPLE);
+      h8.Add("backWood", Wood.MAPLE);
+      inventory.AddInstrument("8900231", 2945.95, new InstrumentSpec(h8));
     }
   }
 }

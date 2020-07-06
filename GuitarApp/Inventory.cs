@@ -5,45 +5,38 @@ namespace GuitarApp
 {
   public class Inventory
   {
-    private List<Guitar> _guitars;
+    private List<Instrument> _instruments;
 
     public Inventory()
     {
-      _guitars = new List<Guitar>();
+      _instruments = new List<Instrument>();
     }
 
-    public void AddGuitar(string serialNumber, double price, GuitarSpec guitarSpec)
+    public void AddInstrument(string serialNumber, double price, InstrumentSpec instrumentSpec)
     {
-      Guitar guitar = new Guitar(serialNumber, price, guitarSpec);
-      _guitars.Add(guitar);
+      Instrument instrument = new Instrument(serialNumber, price, instrumentSpec);
+
+      _instruments.Add(instrument);
     }
 
-    public Guitar GetGuitar(string serialNumber)
+    public Instrument GetInstrument(string serialNumber)
     {
-      return _guitars.Where(g => string.Equals(g.SerialNumber, serialNumber)).FirstOrDefault();
+      return _instruments.Where(g => string.Equals(g.SerialNumber, serialNumber)).FirstOrDefault();
     }
 
-    public List<Guitar> Search(GuitarSpec searchSpec)
+    public List<Instrument> Search(InstrumentSpec searchSpec)
     {
-      List<Guitar> returnGuitars = new List<Guitar>();
+      List<Instrument> instrumentList = new List<Instrument>();
 
-      foreach (var guitar in _guitars)
+      foreach (var instrument in _instruments)
       {
-        // ignore serial number and price since those are unique
-        string builder = searchSpec.Builder;
-        string model = searchSpec.Model;
-        string type = searchSpec.Type;
-        string backWood = searchSpec.BackWood;
-        string topWood = searchSpec.TopWood;
-
-        GuitarSpec guitarSpec = guitar.GuitarSpec;
-
-        if (guitarSpec.MatchesSpec(searchSpec))
+        if (instrument != null && instrument.InstrumentSpec.Matches(searchSpec))
         {
-          returnGuitars.Add(guitar);
+          instrumentList.Add(instrument);
         }
       }
-      return returnGuitars;
+
+      return instrumentList;
     }
   }
 }
