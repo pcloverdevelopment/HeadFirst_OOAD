@@ -1,0 +1,13 @@
+C:\Users\pclov\source\repos\HF_OOAD\GameSystem\bin\Debug\netcoreapp3.1\GameSystem.exe
+C:\Users\pclov\source\repos\HF_OOAD\GameSystem\bin\Debug\netcoreapp3.1\GameSystem.deps.json
+C:\Users\pclov\source\repos\HF_OOAD\GameSystem\bin\Debug\netcoreapp3.1\GameSystem.runtimeconfig.json
+C:\Users\pclov\source\repos\HF_OOAD\GameSystem\bin\Debug\netcoreapp3.1\GameSystem.runtimeconfig.dev.json
+C:\Users\pclov\source\repos\HF_OOAD\GameSystem\bin\Debug\netcoreapp3.1\GameSystem.dll
+C:\Users\pclov\source\repos\HF_OOAD\GameSystem\bin\Debug\netcoreapp3.1\GameSystem.pdb
+C:\Users\pclov\source\repos\HF_OOAD\GameSystem\obj\Debug\netcoreapp3.1\GameSystem.csprojAssemblyReference.cache
+C:\Users\pclov\source\repos\HF_OOAD\GameSystem\obj\Debug\netcoreapp3.1\GameSystem.csproj.CoreCompileInputs.cache
+C:\Users\pclov\source\repos\HF_OOAD\GameSystem\obj\Debug\netcoreapp3.1\GameSystem.AssemblyInfoInputs.cache
+C:\Users\pclov\source\repos\HF_OOAD\GameSystem\obj\Debug\netcoreapp3.1\GameSystem.AssemblyInfo.cs
+C:\Users\pclov\source\repos\HF_OOAD\GameSystem\obj\Debug\netcoreapp3.1\GameSystem.dll
+C:\Users\pclov\source\repos\HF_OOAD\GameSystem\obj\Debug\netcoreapp3.1\GameSystem.pdb
+C:\Users\pclov\source\repos\HF_OOAD\GameSystem\obj\Debug\netcoreapp3.1\GameSystem.genruntimeconfig.cache
